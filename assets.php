@@ -4,6 +4,7 @@ ini_set("display_errors", 1);
 set_time_limit(0);
 
 define('OUTPUT_DIRECTORY', dirname(__FILE__) . '/download/');
+define('INPUT_DIRECTORY', dirname(__FILE__) . "/game/furniture/");
 define('OFFICIAL_RES_URL', "https://www.habbo.com/");
 define('FLASH_CLIENT_URL', "http://habboo-a.akamaihd.net/gordon/PRODUCTION-201506301513-456128588/");
 define('DCR_URL', "http://habboo-a.akamaihd.net/dcr/hof_furni/");
@@ -234,9 +235,10 @@ define('DCR_URL', "http://habboo-a.akamaihd.net/dcr/hof_furni/");
         consoleLog("Starting RoomTypes");
         foreach ($flor_types as $index => $value):
             consoleLogBlank();
-            $data      = file_get_contents_with_console($value['path']);
             $name      = $value['id'];
             $file_name = OUTPUT_DIRECTORY . $name . '.swf';
+            $file_path = INPUT_DIRECTORY . $name . '.swf';
+            $data      = file_get_contents_with_console($file_path);
             file_put_contents($file_name, $data);
             ExtractFlash($file_name);
             unlink($file_name);
@@ -245,9 +247,10 @@ define('DCR_URL', "http://habboo-a.akamaihd.net/dcr/hof_furni/");
         consoleLog("Starting WallTypes");
         foreach ($wall_types as $index => $value):
             consoleLogBlank();
-            $data      = file_get_contents_with_console($value['path']);
             $name      = $value['id'];
             $file_name = OUTPUT_DIRECTORY . $name . '.swf';
+            $file_path = INPUT_DIRECTORY . $name . '.swf';
+            $data      = file_get_contents_with_console($file_path);
             file_put_contents($file_name, $data);
             ExtractFlash($file_name);
             unlink($file_name);
